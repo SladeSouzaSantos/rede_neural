@@ -122,19 +122,11 @@ const pessoa = {
     localizacao: "Curitiba"
 }
 
-const pessoaTensorNormalizada = [
-    [
-        0.2,
-        0,
-        0,
-        1,
-        0,
-        0,
-        1
-    ]
+const pessoaTensorNormalizado = [
+    [0.2, 0, 0, 1, 0, 0, 1]
 ]
 
-await predict(model, pessoaTensorNormalizada)
+await predict(model, pessoaTensorNormalizado)
 
 const predictions = await predict(model, pessoaTensorNormalizado)
 const results = predictions
