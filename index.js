@@ -57,9 +57,9 @@ async function trainModel(inputXs, outputYs) {
             epochs: 100,
             shuffle: true,
             callbacks: {
-                 onEpochEnd: (epoch, log) => console.log(
+                 /*onEpochEnd: (epoch, log) => console.log(
                      `Epoch: ${epoch + 1}: loss = ${log.loss}`
-                 )
+                 )*/
             }
         }
     )
@@ -103,6 +103,7 @@ const tensorPessoasNormalizado = [
 // Labels das categorias a serem previstas (one-hot encoded)
 // [premium, medium, basic]
 const labelsNomes = ["premium", "medium", "basic"]; // Ordem dos labels
+
 const tensorLabels = [
     [1, 0, 0], // premium - Erick
     [0, 1, 0], // medium - Ana
@@ -126,9 +127,8 @@ const pessoaTensorNormalizado = [
     [0.2, 0, 0, 1, 0, 0, 1]
 ]
 
-await predict(model, pessoaTensorNormalizado)
-
 const predictions = await predict(model, pessoaTensorNormalizado)
+
 const results = predictions
     .sort((a, b) => b.prob - a.prob)
     .map(p => `${labelsNomes[p.index]} (${(p.prob * 100).toFixed(2)}%)`)
